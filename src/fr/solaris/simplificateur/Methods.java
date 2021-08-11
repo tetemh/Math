@@ -1,5 +1,6 @@
 package fr.solaris.simplificateur;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -52,7 +53,7 @@ public class Methods {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Choose : rectangle, circle");
             String rep = scanner.nextLine();
-            if(rep.equalsIgnoreCase("rectangle")){
+            if (rep.equalsIgnoreCase("rectangle")) {
                 System.out.print("Please enter the width : ");
                 double width = scanner.nextDouble();
                 System.out.print("Please enter the height : ");
@@ -63,7 +64,7 @@ public class Methods {
                 System.out.println("The air is : " + res + "²");
 
                 retry();
-            }else if(rep.equalsIgnoreCase("circle")) {
+            } else if (rep.equalsIgnoreCase("circle")) {
                 double pi = Math.PI;
 
                 System.out.print("Enter the radius : ");
@@ -84,16 +85,16 @@ public class Methods {
             double temp = price * discount;
             temp = temp / 100;
             double result = price - temp;
-            System.out.println("The value of the object after" + discount +" discount is : " + result);
+            System.out.println("The value of the object after" + discount + " discount is : " + result);
             retry();
         }
     }
 
-    public static void volume(){
+    public static void volume() {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("Choose : rectangle, shpere");
             String rep = scanner.nextLine();
-            if(rep.equalsIgnoreCase("rectangle")){
+            if (rep.equalsIgnoreCase("rectangle")) {
                 System.out.print("Enter the width : ");
                 double width = scanner.nextDouble();
                 System.out.print("Enter the height : ");
@@ -103,7 +104,7 @@ public class Methods {
                 double res = width * height * length;
                 System.out.println("The volume is : " + res + "^3");
                 retry();
-            }else if(rep.equalsIgnoreCase("shpere")){
+            } else if (rep.equalsIgnoreCase("shpere")) {
                 double pi = Math.PI;
                 System.out.print("Enter radius : ");
                 double rad = scanner.nextDouble();
@@ -113,7 +114,7 @@ public class Methods {
         }
     }
 
-    public static void calcul(){
+    public static void calcul() {
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("First number : ");
             double first = scanner.nextDouble();
@@ -145,6 +146,79 @@ public class Methods {
         }
     }
 
+    public static void convDistance() {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Please put the basic unit : ");
+            String first = scanner.next();
+            System.out.print("Please put the unit in which you want to convert : ");
+            String second = scanner.next();
+            double cal = scanner.nextDouble();
+
+            utilsConvDistance(first, second, cal);
+        }
+    }
+
+    public static void utilsConvDistance(String first, String second, double cal) {
+
+        try (Scanner scanner = new Scanner(System.in)) {
+            if(first.equalsIgnoreCase("m") && second.equalsIgnoreCase("Km")) {
+                double rep = cal / 1000;
+                System.out.print("The distance is : " + rep + "Km");
+            }
+            if(first.equalsIgnoreCase("m") && second.equalsIgnoreCase("hm")) {
+                double rep = cal / 100;
+                System.out.print("The distance is : " + rep + "hm");
+            }
+            if(first.equalsIgnoreCase("m") && second.equalsIgnoreCase("dam")) {
+                double rep = cal / 10;
+                System.out.print("The distance is : " + rep + "dam");
+            }
+
+
+            if(first.equalsIgnoreCase("dam") && second.equalsIgnoreCase("Km")) {
+                double rep = cal / 100;
+                System.out.print("The distance is : " + rep + "Km");
+            }
+            if(first.equalsIgnoreCase("dam") && second.equalsIgnoreCase("hm")) {
+                double rep = cal / 10;
+                System.out.print("The distance is : " + rep + "hm");
+            }
+            if(first.equalsIgnoreCase("dam") && second.equalsIgnoreCase("m")) {
+                double rep = cal * 10;
+                System.out.print("The distance is : " + rep + "m");
+            }
+
+
+            if(first.equalsIgnoreCase("hm") && second.equalsIgnoreCase("Km")) {
+                double rep = cal / 10;
+                System.out.print("The distance is : " + rep + "Km");
+            }
+            if(first.equalsIgnoreCase("hm") && second.equalsIgnoreCase("dam")) {
+                double rep = cal * 10;
+                System.out.print("The distance is : " + rep + "hm");
+            }
+            if(first.equalsIgnoreCase("hm") && second.equalsIgnoreCase("m")) {
+                double rep = cal * 100;
+                System.out.print("The distance is : " + rep + "dam");
+            }
+
+
+
+            if(first.equalsIgnoreCase("Km") && second.equalsIgnoreCase("hm")) {
+                double rep = cal * 10;
+                System.out.print("The distance is : " + rep + "Km");
+            }
+            if(first.equalsIgnoreCase("Km") && second.equalsIgnoreCase("dam")) {
+                double rep = cal * 100;
+                System.out.print("The distance is : " + rep + "Km");
+            }
+            if(first.equalsIgnoreCase("Km") && second.equalsIgnoreCase("m")) {
+                double rep = cal * 1000;
+                System.out.print("The distance is : " + rep + "Km");
+            }
+        }
+
+    }
 
     private static void msgCalculatrice(double a, double b, String ope, double result) {
         System.out.println("The answer of " + a + " " + ope + " " + b + " is " + result);
@@ -152,16 +226,14 @@ public class Methods {
     }
 
 
-
-
     public static void retry() {
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println("Do you want to do something else (y / n) : ");
-            String rep = scanner.nextLine();
+            System.out.print("Do you want to do something else (y / n) : ");
+            String rep = scanner.next();
 
-            if(rep.equalsIgnoreCase("y")) {
+            if (rep.equalsIgnoreCase("y")) {
                 firstTime();
-            }else{
+            } else {
                 System.out.print("you will leave the calculator !");
                 Thread.sleep(200);
                 return;
@@ -179,16 +251,17 @@ public class Methods {
 
     public static void firstTime() throws InterruptedException {
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print(ANSI_PURPLE + "(Air, Medium, Discount, volume rectangle, Calcul, Nothing) \n" +
+            System.out.print(ANSI_PURPLE + "(Air, Medium, Discount, volume rectangle, Calcul, CDistance, Nothing) \n" +
                     "Please enter the calculation you want to do : ");
             methodName = scanner.nextLine();
 
-            if(methodName.equalsIgnoreCase("medium")) Methods.medium();
-            if(methodName.equalsIgnoreCase("air")) Methods.air();
-            if(methodName.equalsIgnoreCase("discount")) Methods.discount();
-            if(methodName.equalsIgnoreCase("volume")) Methods.volume();
-            if(methodName.equalsIgnoreCase("calcul")) Methods.calcul();
-            if(methodName.equalsIgnoreCase("nothing")) Methods.nothing();
+            if (methodName.equalsIgnoreCase("medium")) Methods.medium();
+            if (methodName.equalsIgnoreCase("air")) Methods.air();
+            if (methodName.equalsIgnoreCase("discount")) Methods.discount();
+            if (methodName.equalsIgnoreCase("volume")) Methods.volume();
+            if (methodName.equalsIgnoreCase("calcul")) Methods.calcul();
+            if (methodName.equalsIgnoreCase("CDistance")) Methods.convDistance();
+            if (methodName.equalsIgnoreCase("nothing")) Methods.nothing();
         }
     }
 }
